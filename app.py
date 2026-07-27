@@ -6,9 +6,13 @@ import numpy as np
 app = Flask(__name__)
 
 # Load model
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model.pkl")
+
 def load_model():
     try:
-        model_data = joblib.load("model.pkl")
+        model_data = joblib.load(MODEL_PATH)
         return model_data['model'], model_data['feature_columns']
     except Exception as e:
         print(f"Error loading model: {e}")
